@@ -117,7 +117,6 @@ const adicionarParticipante = (event) => {
 
     const formData = new FormData(event.target);
 
-
     const participante = {
         nome: formData.get('nome'),
         email: formData.get('email'),
@@ -125,7 +124,15 @@ const adicionarParticipante = (event) => {
         dataCheckIn: null
     }
 
-    
+    // verificar se o participante já existe
+    const participanteExiste = participantes.find(
+        (p) => p.email == participante.email
+    )
+
+    if (participanteExiste) {
+        alert('E-mail já cadastrado');
+        return;
+    }
 
     participantes = [participante, ... participantes];
     atualizarLista(participantes)
