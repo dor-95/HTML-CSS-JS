@@ -100,3 +100,20 @@ const atualizarLista = (participantes) => {
 }
 
 atualizarLista(participantes);
+
+const adicionarParticipante = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+
+    const participante = {
+        nome: formData.get('nome'),
+        email: formData.get('email'),
+        dataInscricao: new Date(),
+        dataCheckIn: null
+    }
+
+    participantes = [participante, ... participantes];
+    atualizarLista(participantes)
+}
